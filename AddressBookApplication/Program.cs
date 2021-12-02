@@ -8,13 +8,16 @@
     public string? PhoneNumber { get; set; }
     public string Addresses { get; set; }
     public string city { get; set; }
+    public string state { get; set; }
     public int zip { get; set; }
     public string? email { get; set; }
     public static List<Person> People = new List<Person>();
-
+   public static Person person = new Person();
+    Dictionary<string,List<Person>> PeopleDictionary = new Dictionary<string,List<Person>>();
+    //Uc5 Use of AddPerson function to add multiple people
     private static void AddPerson()
     {
-        Person person = new Person();
+        
 
         Console.Write("Enter First Name: ");
         person.FirstName = Console.ReadLine();
@@ -29,15 +32,17 @@
 
         Console.Write("Enter Address: ");
         
-        person.Addresses[0] = Console.ReadLine();
+       person.Addresses = Console.ReadLine();
+
         Console.Write("Enter City: ");
-        person.Addresses[1] = Console.ReadLine();
+        person.city = Console.ReadLine();
         Console.Write("Enter State: ");
-        addresses[2] = Console.ReadLine();
+        person.state = Console.ReadLine();
 
         Console.Write("Enter zip:");
         person.zip=Convert.ToInt32(Console.ReadLine());
-        person.Addresses = addresses;
+        
+
 
         People.Add(person);
     }
@@ -46,9 +51,9 @@
         Console.WriteLine("First Name: " + person.FirstName);
         Console.WriteLine("Last Name: " + person.LastName);
         Console.WriteLine("Phone Number: " + person.PhoneNumber);
-        Console.WriteLine("Address: " + person.Addresses[0]);
-        Console.WriteLine("city: " + person.Addresses[1]);
-        Console.WriteLine("State : " + person.Addresses[1]);
+        Console.WriteLine("Address: " + person.Addresses);
+        Console.WriteLine("city: " + person.city);
+        Console.WriteLine("State : " + person.state);
         Console.WriteLine("Zip:"+person.zip);
         Console.WriteLine("-------------------------------------------");
     }
@@ -114,28 +119,31 @@
             Person person1 = new Person();
 
             Console.Write("Enter First Name: ");
-            person1.FirstName = Console.ReadLine();
+            person.FirstName = Console.ReadLine();
 
             Console.Write("Enter Last Name: ");
-            person1.LastName = Console.ReadLine();
+            person.LastName = Console.ReadLine();
 
             Console.Write("Enter Phone Number: ");
-            person1.PhoneNumber = Console.ReadLine();
+            person.PhoneNumber = Console.ReadLine();
             Console.Write("Enter Emai:");
-            person1.email = Console.ReadLine();
+            person.email = Console.ReadLine();
 
             Console.Write("Enter Address: ");
-            string[] addresses = new string[3];
-            addresses[0] = Console.ReadLine();
+
+            person.Addresses = Console.ReadLine();
+
             Console.Write("Enter City: ");
-            addresses[1] = Console.ReadLine();
+            person.city = Console.ReadLine();
             Console.Write("Enter State: ");
-            addresses[2] = Console.ReadLine();
+            person.state = Console.ReadLine();
 
             Console.Write("Enter zip:");
-            person1.zip=Convert.ToInt32(Console.ReadLine());
-            person1.Addresses = addresses;
-            People.Add(person1);
+            person.zip=Convert.ToInt32(Console.ReadLine());
+
+
+
+            People.Add(person);
             Console.ReadKey();
 
             return;
