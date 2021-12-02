@@ -95,4 +95,56 @@
         Console.WriteLine("\nPress any key to continue.");
         Console.ReadKey();
     }
+    public static void edit()
+    {
+        Console.WriteLine("Enter the first name of the person you would like to edit.");
+        string firstName = Console.ReadLine();
+        Person person = People.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower());
+        if (person != null)
+        {
+            People.Remove(person);
+            Console.WriteLine("Please detail again As you want changes!!!");
+            Person person1 = new Person();
+
+            Console.Write("Enter First Name: ");
+            person1.FirstName = Console.ReadLine();
+
+            Console.Write("Enter Last Name: ");
+            person1.LastName = Console.ReadLine();
+
+            Console.Write("Enter Phone Number: ");
+            person1.PhoneNumber = Console.ReadLine();
+            Console.Write("Enter Emai:");
+            person1.email = Console.ReadLine();
+
+            Console.Write("Enter Address: ");
+            string[] addresses = new string[3];
+            addresses[0] = Console.ReadLine();
+            Console.Write("Enter City: ");
+            addresses[1] = Console.ReadLine();
+            Console.Write("Enter State: ");
+            addresses[2] = Console.ReadLine();
+
+            Console.Write("Enter zip:");
+            person1.zip=Convert.ToInt32(Console.ReadLine());
+            person1.Addresses = addresses;
+            People.Add(person1);
+            Console.ReadKey();
+
+            return;
+        }
+        else
+        {
+            Console.WriteLine("That person could not be found. Press any key to continue");
+            Console.ReadKey();
+
+            Console.ReadKey();
+
+        }
+
+
+
+
+
+    }
 }
