@@ -1,11 +1,15 @@
 ﻿public class Person
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string PhoneNumber { get; set; }
-    public string[] Addresses { get; set; }
+    
+
+    
+    public string FirstName{ get; set; }
+    public string? LastName { get; set; }
+    public string? PhoneNumber { get; set; }
+    public string Addresses { get; set; }
+    public string city { get; set; }
     public int zip { get; set; }
-    public string email { get; set; }
+    public string? email { get; set; }
     public static List<Person> People = new List<Person>();
 
     private static void AddPerson()
@@ -24,10 +28,10 @@
         person.email = Console.ReadLine();
 
         Console.Write("Enter Address: ");
-        string[] addresses = new string[3];
-        addresses[0] = Console.ReadLine();
+        
+        person.Addresses[0] = Console.ReadLine();
         Console.Write("Enter City: ");
-        addresses[1] = Console.ReadLine();
+        person.Addresses[1] = Console.ReadLine();
         Console.Write("Enter State: ");
         addresses[2] = Console.ReadLine();
 
@@ -55,6 +59,7 @@
         Console.WriteLine("\t(((((Enter add Command to add people.      )))))");
         Console.WriteLine("\t(((((Enter list Command to list people     )))))");
         Console.WriteLine("\t(((((Enter edit Command to edit  people     )))))");
+        Console.WriteLine("\t(((((Enter remove Command to edit  people     )))))");
         string command = "";
         while (command != "exit")
         {
@@ -67,10 +72,12 @@
                     AddPerson();
 
                     break;
-                //case "edit":
-                //    edit();
-                //    break;
-
+                case "edit":
+                    edit();
+                    break;
+                case "remove":
+                    RemovePerson();
+                    break;
                 case "list":
                     ListPeople();
                     break;
@@ -147,4 +154,39 @@
 
 
     }
+    private static void RemovePerson()
+    {
+        //use LINQ to query the list for the first person with the same first name as the first name the user entered.
+        Console.WriteLine("Enter the first name of the person you would like to remove.");
+        string firstName = Console.ReadLine();
+        Person person = People.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower());
+        if (person == null)
+        {
+            Console.WriteLine("That person could not be found. Press any key to continue");
+            Console.ReadKey();
+            return;
+        }
+        if (Console.ReadKey().Key == ConsoleKey.Y)
+        {
+            People.Remove(person);
+            Console.WriteLine("Person removed. Press any key to continue.");
+            Console.ReadKey();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
