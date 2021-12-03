@@ -2,23 +2,25 @@
 {
     
 
-    
-    public string FirstName{ get; set; }
+     
+    public string? FirstName{ get; set; }
     public string? LastName { get; set; }
     public string? PhoneNumber { get; set; }
-    public string Addresses { get; set; }
-    public string city { get; set; }
-    public string state { get; set; }
+    public string? Addresses { get; set; }
+    public string? city { get; set; }
+    public string? state { get; set; }
     public int zip { get; set; }
     public string? email { get; set; }
     public static List<Person> People = new List<Person>();
    public static Person person = new Person();
-    Dictionary<string,List<Person>> PeopleDictionary = new Dictionary<string,List<Person>>();
-    //Uc5 Use of AddPerson function to add multiple people
+   public static Dictionary<string,List<Person>> PeopleDictionary = new Dictionary<string,List<Person>>();
+    
     private static void AddPerson()
     {
-        
 
+        Console.Write("Enter Address Book name:");
+      string?  AddressBookName = Console.ReadLine();
+            
         Console.Write("Enter First Name: ");
         person.FirstName = Console.ReadLine();
 
@@ -41,10 +43,23 @@
 
         Console.Write("Enter zip:");
         person.zip=Convert.ToInt32(Console.ReadLine());
+
         
 
-
         People.Add(person);
+        PeopleDictionary.Add(AddressBookName, People);
+        foreach(KeyValuePair<string,List<Person>> valuePair in PeopleDictionary)
+        {
+            Console.WriteLine("Address book name:"+valuePair.Key);
+            foreach(Person person in valuePair.Value)
+            {
+                Console.WriteLine("First Name:"+person.FirstName+" Last Name:"+person.LastName);
+            }
+        }
+
+                
+
+
     }
     private static void PrintPerson(Person person)
     {
@@ -63,8 +78,9 @@
         Console.WriteLine("\t(((((Welcome To Address Book               )))))");
         Console.WriteLine("\t(((((Enter add Command to add people.      )))))");
         Console.WriteLine("\t(((((Enter list Command to list people     )))))");
-        Console.WriteLine("\t(((((Enter edit Command to edit  people     )))))");
-        Console.WriteLine("\t(((((Enter remove Command to edit  people     )))))");
+        Console.WriteLine("\t(((((Enter edit Command to edit  people    )))))");
+        Console.WriteLine("\t(((((Enter remove Command to edit  people   )))))");
+
         string command = "";
         while (command != "exit")
         {
