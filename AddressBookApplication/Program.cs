@@ -20,10 +20,10 @@
 
         Console.Write("Enter Address Book name:");
       string?  AddressBookName = Console.ReadLine();
-            
+        
         Console.Write("Enter First Name: ");
         person.FirstName = Console.ReadLine();
-
+        
         Console.Write("Enter Last Name: ");
         person.LastName = Console.ReadLine();
 
@@ -43,35 +43,30 @@
 
         Console.Write("Enter zip:");
         person.zip=Convert.ToInt32(Console.ReadLine());
+        //use LINQ to query the list for the first person with the same first name as the first name the user entered.
+        //used lambda operator
 
-        
-
-        People.Add(person);
-        PeopleDictionary.Add(AddressBookName, People);
-        foreach(KeyValuePair<string,List<Person>> valuePair in PeopleDictionary)
+        Person person1 = People.FirstOrDefault(x => x.FirstName==x.FirstName);
+        person1=People.Find(x => x.LastName==x.LastName);
+        //Duplicate Check is done on Person Name while adding person to Address Book
+        if (person1!=null && person1 !=null )
         {
-            Console.WriteLine("Address book name:"+valuePair.Key);
-            foreach(Person person in valuePair.Value)
-            {
-                Console.WriteLine("First Name:"+person.FirstName+" Last Name:"+person.LastName);
-            }
+            Console.WriteLine("Sorry this contact exist");
         }
+        else
+        {
+            ;
+            People.Add(person);
+            PeopleDictionary.Add(AddressBookName, People);
+        }
+      
+       
 
                 
 
 
     }
-    private static void PrintPerson(Person person)
-    {
-        Console.WriteLine("First Name: " + person.FirstName);
-        Console.WriteLine("Last Name: " + person.LastName);
-        Console.WriteLine("Phone Number: " + person.PhoneNumber);
-        Console.WriteLine("Address: " + person.Addresses);
-        Console.WriteLine("city: " + person.city);
-        Console.WriteLine("State : " + person.state);
-        Console.WriteLine("Zip:"+person.zip);
-        Console.WriteLine("-------------------------------------------");
-    }
+   
     public static void Main(String[] args)
     {
 
@@ -116,6 +111,22 @@
             return;
         }
         Console.WriteLine("Here are the current people in your address book:\n");
+        foreach (KeyValuePair<string, List<Person>> valuePair in PeopleDictionary)
+        {
+            Console.WriteLine("Address book name:"+valuePair.Key);
+            foreach (Person person in valuePair.Value)
+            {
+               
+                Console.WriteLine("First Name: " + person.FirstName);
+                Console.WriteLine("Last Name: " + person.LastName);
+                Console.WriteLine("Phone Number: " + person.PhoneNumber);
+                Console.WriteLine("Address: " + person.Addresses);
+                Console.WriteLine("city: " + person.city);
+                Console.WriteLine("State : " + person.state);
+                Console.WriteLine("Zip:"+person.zip);
+                Console.WriteLine("-------------------------------------------");
+            }
+        }
         foreach (var person in People)
         {
             PrintPerson(person);
