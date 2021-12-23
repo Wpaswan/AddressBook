@@ -1,217 +1,53 @@
-﻿public class Person
+﻿namespace AddressBookApplication
 {
-    
-
-     
-    public string? FirstName{ get; set; }
-    public string? LastName { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? Addresses { get; set; }
-    public string? city { get; set; }
-    public string? state { get; set; }
-    public int zip { get; set; }
-    public string? email { get; set; }
-    public static List<Person> People = new List<Person>();
-   public static Person person = new Person();
-   public static Dictionary<string,List<Person>> PeopleDictionary = new Dictionary<string,List<Person>>();
-    
-    private static void AddPerson()
+    public class Program
     {
-
-        Console.Write("Enter Address Book name:");
-      string?  AddressBookName = Console.ReadLine();
-        
-        Console.Write("Enter First Name: ");
-        person.FirstName = Console.ReadLine();
-        
-        Console.Write("Enter Last Name: ");
-        person.LastName = Console.ReadLine();
-
-        Console.Write("Enter Phone Number: ");
-        person.PhoneNumber = Console.ReadLine();
-        Console.Write("Enter Emai:");
-        person.email = Console.ReadLine();
-
-        Console.Write("Enter Address: ");
-        
-       person.Addresses = Console.ReadLine();
-
-        Console.Write("Enter City: ");
-        person.city = Console.ReadLine();
-        Console.Write("Enter State: ");
-        person.state = Console.ReadLine();
-
-        Console.Write("Enter zip:");
-        person.zip=Convert.ToInt32(Console.ReadLine());
-        //use LINQ to query the list for the first person with the same first name as the first name the user entered.
-        //used lambda operator
-
-        Person person1 = People.FirstOrDefault(x => x.FirstName==x.FirstName);
-        person1=People.Find(x => x.LastName==x.LastName);
-        //Duplicate Check is done on Person Name while adding person to Address Book
-        if (person1!=null && person1 !=null )
+        public static void Main(String[] args)
         {
-            Console.WriteLine("Sorry this contact exist");
-        }
-        else
-        {
-            ;
-            People.Add(person);
-            PeopleDictionary.Add(AddressBookName, People);
-        }
-      
-       
-
-                
+            AddressBookManagement addressBookManagement = new AddressBookManagement();
+            Console.WriteLine("\t(((((Welcome To Address Book               )))))");
+            Console.WriteLine("\t(((((Enter add Command to add people.      )))))");
+            Console.WriteLine("\t(((((Enter list Command to list people     )))))");
+            Console.WriteLine("\t(((((Enter edit Command to edit  people    )))))");
+            Console.WriteLine("\t(((((Enter remove Command to edit  people  )))))");
+            Console.WriteLine("\t(((((Enter find Command to find  people  )))))");
 
 
-    }
-   
-    public static void Main(String[] args)
-    {
-
-        Console.WriteLine("\t(((((Welcome To Address Book               )))))");
-        Console.WriteLine("\t(((((Enter add Command to add people.      )))))");
-        Console.WriteLine("\t(((((Enter list Command to list people     )))))");
-        Console.WriteLine("\t(((((Enter edit Command to edit  people    )))))");
-        Console.WriteLine("\t(((((Enter remove Command to edit  people   )))))");
-
-        string command = "";
-        while (command != "exit")
-        {
-            // Console.Clear();
-            Console.WriteLine("Please enter a command: ");
-            command = Console.ReadLine().ToLower();
-            switch (command)
+            string command = "";
+            while (command != "exit")
             {
-                case "add":
-                    AddPerson();
+                // Console.Clear();
+                Console.WriteLine("Please enter a command: ");
+                command = Console.ReadLine().ToLower();
+                switch (command)
+                {
+                    case "add":
+                        addressBookManagement.AddPerson();
 
-                    break;
-                case "edit":
-                    edit();
-                    break;
-                case "remove":
-                    RemovePerson();
-                    break;
-                case "list":
-                    ListPeople();
-                    break;
+                        break;
+                    case "edit":
+                        addressBookManagement.edit();
+                        break;
+                    case "remove":
+                        addressBookManagement.RemovePerson();
+                        break;
+                    case "list":
+                        addressBookManagement.ListPeople();
+                        break;
+                    case "find":
+                        addressBookManagement.FindPersonInCityOrState();
+                        break;
+
+
+                }
             }
-        }
 
+
+        }
 
     }
-    private static void ListPeople()
-    {
-        if (People.Count == 0)
-        {
-            Console.WriteLine("Your address book is empty. Press any key to continue.");
-            Console.ReadKey();
-            return;
-        }
-        Console.WriteLine("Here are the current people in your address book:\n");
-        foreach (KeyValuePair<string, List<Person>> valuePair in PeopleDictionary)
-        {
-            Console.WriteLine("Address book name:"+valuePair.Key);
-            foreach (Person person in valuePair.Value)
-            {
-               
-                Console.WriteLine("First Name: " + person.FirstName);
-                Console.WriteLine("Last Name: " + person.LastName);
-                Console.WriteLine("Phone Number: " + person.PhoneNumber);
-                Console.WriteLine("Address: " + person.Addresses);
-                Console.WriteLine("city: " + person.city);
-                Console.WriteLine("State : " + person.state);
-                Console.WriteLine("Zip:"+person.zip);
-                Console.WriteLine("-------------------------------------------");
-            }
-        }
-        foreach (var person in People)
-        {
-            PrintPerson(person);
-        }
-        Console.WriteLine("\nPress any key to continue.");
-        Console.ReadKey();
-    }
-    public static void edit()
-    {
-        Console.WriteLine("Enter the first name of the person you would like to edit.");
-        string firstName = Console.ReadLine();
-        Person person = People.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower());
-        if (person != null)
-        {
-            People.Remove(person);
-            Console.WriteLine("Please detail again As you want changes!!!");
-            Person person1 = new Person();
 
-            Console.Write("Enter First Name: ");
-            person.FirstName = Console.ReadLine();
-
-            Console.Write("Enter Last Name: ");
-            person.LastName = Console.ReadLine();
-
-            Console.Write("Enter Phone Number: ");
-            person.PhoneNumber = Console.ReadLine();
-            Console.Write("Enter Emai:");
-            person.email = Console.ReadLine();
-
-            Console.Write("Enter Address: ");
-
-            person.Addresses = Console.ReadLine();
-
-            Console.Write("Enter City: ");
-            person.city = Console.ReadLine();
-            Console.Write("Enter State: ");
-            person.state = Console.ReadLine();
-
-            Console.Write("Enter zip:");
-            person.zip=Convert.ToInt32(Console.ReadLine());
-
-
-
-            People.Add(person);
-            Console.ReadKey();
-
-            return;
-        }
-        else
-        {
-            Console.WriteLine("That person could not be found. Press any key to continue");
-            Console.ReadKey();
-
-            Console.ReadKey();
-
-        }
-
-
-
-
-
-    }
-    private static void RemovePerson()
-    {
-        //use LINQ to query the list for the first person with the same first name as the first name the user entered.
-        Console.WriteLine("Enter the first name of the person you would like to remove.");
-        string firstName = Console.ReadLine();
-        Person person = People.FirstOrDefault(x => x.FirstName.ToLower() == firstName.ToLower());
-        if (person == null)
-        {
-            Console.WriteLine("That person could not be found. Press any key to continue");
-            Console.ReadKey();
-            return;
-        }
-        if (Console.ReadKey().Key == ConsoleKey.Y)
-        {
-            People.Remove(person);
-            Console.WriteLine("Person removed. Press any key to continue.");
-            Console.ReadKey();
-        }
-    }
 }
-
-
-
 
 
 
