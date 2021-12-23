@@ -199,6 +199,9 @@ namespace AddressBookApplication
                             }
                         }
                     }
+                   
+                  int countPeople = cityWisePeopleDictionary.Count; 
+                    Console.WriteLine("Total number of people in perticular city:"+countPeople);
                     break;
                     case 2:
                     Console.WriteLine("Enter state to find perticular person");
@@ -242,6 +245,8 @@ namespace AddressBookApplication
                         }
                         
                     }
+                    int countPeople1 = stateWisePeopleDictionary.Count;
+                    Console.WriteLine("Total number of people in perticular city:"+countPeople1);
                     break;
                 default:
                     Console.WriteLine("Wrong choice!!");
