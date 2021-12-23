@@ -210,7 +210,7 @@ namespace AddressBookApplication
 
 
                     foreach (KeyValuePair<string, List<Person>> valuePair in PeopleDictionary)
-                    { //for state do the same thing for state
+                    { //Using lambda => here
                         Person person1 = valuePair.Value.Find(x => x.state.ToLower()==SearchAccordingstate.ToLower());
                         if (person1!=null)
                         {
@@ -242,6 +242,9 @@ namespace AddressBookApplication
                         }
                         
                     }
+                    break;
+                default:
+                    Console.WriteLine("Wrong choice!!");
                     break;
 
             }
