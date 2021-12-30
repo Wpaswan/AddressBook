@@ -59,9 +59,30 @@ namespace AddressBookApplication
             }
 
 
+           
 
 
 
+        }
+        public void sortByFirstName()
+        {
+            foreach (var addressBook in PeopleDictionary)
+            {
+                Console.WriteLine("Address book name:"+addressBook.Key);
+
+                foreach (var person in
+                    addressBook.Value.OrderBy(x => x.FirstName))
+                {
+                    Console.WriteLine("First Name: " + person.FirstName);
+                    Console.WriteLine("Last Name: " + person.LastName);
+                    Console.WriteLine("Phone Number: " + person.PhoneNumber);
+                    Console.WriteLine("Address: " + person.Addresses);
+                    Console.WriteLine("city: " + person.city);
+                    Console.WriteLine("State : " + person.state);
+                    Console.WriteLine("Zip:"+person.zip);
+                    Console.WriteLine("-------------------------------------------");
+                }
+            }
 
         }
         public void ListPeople()
