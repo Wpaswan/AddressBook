@@ -4,6 +4,7 @@
     {
         public static void Main(String[] args)
         {
+            string filePath = @"D:\AddressBook\AddressBookApplication\Files\ListOfAddressBook.json";
             AddressBookManagement addressBookManagement = new AddressBookManagement();
             Console.WriteLine("\t(((((Welcome To Address Book                                      )))))");
             Console.WriteLine("\t(((((Enter add Command to add people.                             )))))");
@@ -12,7 +13,8 @@
             Console.WriteLine("\t(((((Enter remove Command to edit  people                         )))))");
             Console.WriteLine("\t(((((Enter find Command to find  people                           )))))");
             Console.WriteLine("\t(((((Enter the sort command to sort the name in alphabetical order)))))");
-            Console.WriteLine("\t(((((Enter the sortBy command to sort by city,state and zip         )))))");
+            Console.WriteLine("\t(((((Enter the sortBy command to sort by city,state and zip       )))))");
+            Console.WriteLine("\t(((((Enter Write Command to sort the people                       )))))");
 
 
 
@@ -45,6 +47,9 @@
                         break;
                     case "sortBy":
                         addressBookManagement.sortByCityStateOrZip();
+                        break;
+                    case "write":
+                        addressBookManagement.WriteDataIntoFile(filePath);
                         break;
 
 

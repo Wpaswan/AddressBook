@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AddressBookApplication
 {
@@ -360,6 +361,12 @@ namespace AddressBookApplication
                 Console.WriteLine("Person removed. Press any key to continue.");
                 Console.ReadKey();
             }
+        }
+        public void WriteDataIntoFile(string filePath)
+        {
+            var jasonObject = JsonConvert.SerializeObject(PeopleDictionary);
+            File.WriteAllText(filePath, jasonObject.ToString());
+
         }
 
     }
