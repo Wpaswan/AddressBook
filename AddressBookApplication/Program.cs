@@ -12,6 +12,8 @@
             Console.WriteLine("\t(((((Enter remove Command to edit  people                         )))))");
             Console.WriteLine("\t(((((Enter find Command to find  people                           )))))");
             Console.WriteLine("\t(((((Enter the sort command to sort the name in alphabetical order)))))");
+            Console.WriteLine("\t(((((Enter the sortBy command to sort by city,state and zip         )))))");
+
 
 
             string command = "";
@@ -40,6 +42,9 @@
                         break;
                     case "sort":
                         addressBookManagement.sortByFirstName();
+                        break;
+                    case "sortBy":
+                        addressBookManagement.sortByCityStateOrZip();
                         break;
 
 
